@@ -16,8 +16,8 @@
         },
         data: () => ({}),
         computed: {
-            globalLoader() {return this.$store.getters.globalLoader},
-            isAuth() {return true}
+            globalLoader() {return !this.$store.getters.globalLoader},
+            isAuth() {return this.$store.getters.currentUser !== null}
         }
     };
 </script>

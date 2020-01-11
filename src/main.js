@@ -31,6 +31,11 @@ new Vue({
   vuetify,
   render: h => h(App),
   created: () => {
-
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        store.dispatch('currentUser', user.uid);
+      }
+      store.dispatch('globalLoader', false);
+    })
   }
 }).$mount('#app')

@@ -53,6 +53,7 @@
             },
             login(){
                 if (this.validate()) {
+                    this.$store.dispatch('logIn', {email: this.email, password: this.password})
                 }
             }
         }

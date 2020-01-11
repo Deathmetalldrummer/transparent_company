@@ -21,7 +21,7 @@
         }),
         methods: {
             exitToApp(){
-                console.log(true)
+                this.$store.dispatch('logOut');
             }
         }
     }
