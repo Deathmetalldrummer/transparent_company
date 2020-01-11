@@ -1,10 +1,5 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
-import vuetify from './plugins/vuetify';
-import firebase from 'firebase';
-
+var fs = require('fs');
+var firebase = require('firebase');
 let firebaseConfig = {
   apiKey: "AIzaSyCtXnFRUV8K92ihAbUBmpR2jgSiaEUpTtY",
   authDomain: "transparent-4b3d0.firebaseapp.com",
@@ -16,21 +11,14 @@ let firebaseConfig = {
   measurementId: "G-EBD6514XX7"
 };
 
-
-
-
 firebase.initializeApp(firebaseConfig);
 
-let storage = firebase.storage();
-let db = firebase.firestore();
-Vue.config.productionTip = false
+let auth = firebase.auth();
 
-new Vue({
-  router,
-  store,
-  vuetify,
-  render: h => h(App),
-  created: () => {
-
-  }
-}).$mount('#app')
+auth.createUserWithEmailAndPassword('user_00100@it.io', '111111111')
+.then(response => {
+    console.log(response);
+}).catch(error => {
+    console.log(error);
+    
+});
