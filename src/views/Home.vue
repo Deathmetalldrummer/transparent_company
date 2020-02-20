@@ -13,6 +13,9 @@
                             v-icon exit_to_app
                         v-list-item-content
                             v-list-item-title exit
+        v-content
+            v-container
+                router-view
         v-footer(inset app)
             span.px-4 &copy; {{ new Date().getFullYear() }}
 
