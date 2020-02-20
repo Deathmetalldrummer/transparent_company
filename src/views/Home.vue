@@ -1,8 +1,11 @@
 <template lang="pug">
     v-app
         v-app-bar(clipped-left app)
-            v-toolbar-title Transparent
+            v-toolbar-title
+                router-link(tag='span' to="/") Transparent
         v-navigation-drawer(clipped mini-variant permanent app overflow)
+            template(v-slot:prepend)
+                Nav
             template(v-slot:append)
                 v-list
                     v-list-item(link @click='exitToApp')
@@ -16,9 +19,11 @@
 </template>
 
 <script>
+    import Nav from "@/components/nav"
     export default {
         data: () => ({
         }),
+        components: {Nav},
         methods: {
             exitToApp(){
                 this.$store.dispatch('logOut');
