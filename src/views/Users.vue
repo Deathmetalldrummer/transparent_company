@@ -1,10 +1,12 @@
 <template lang="pug">
-    h1 {{message}}
+    DataTable
 </template>
 
 <script>
+    import DataTable from '@/components/dataTable'
      export default {
             name: 'Users',
+            components: {DataTable},
             data() {
                 return {
                     message: 'Слава Одину, Users работает!'

@@ -3,6 +3,8 @@
         v-app-bar(clipped-left app)
             v-toolbar-title
                 router-link(tag='span' to="/") Transparent
+            //v-spacer
+            //v-toolbar-title(tag='span' @click="$router.go(-1)") back
         v-navigation-drawer(clipped mini-variant permanent app overflow)
             template(v-slot:prepend)
                 Nav
