@@ -8,13 +8,15 @@
             v-model="selected"
             item-key="name"
             :headers='headers'
-            :items='desserts'
+            :items='usersList'
             :search='search'
             :multi-sort="true"
             show-select
-            :loading="false"
-            :hide-default-footer="true"
-            :items-per-page="100"
+            :hide-default-footer="false"
+            :items-per-page="5"
+            :loading="usersLoading"
+            loading-text="Loading... Please wait"
+            :footer-props="{'items-per-page-options': [5,10,15,25,50,-1]}"
         )
 </template>
 
@@ -26,31 +28,26 @@
                 selected: [],
                 search: '',
                 headers: [
-                    { text: 'Name', value: 'name' },
-                    { text: 'Email', value: 'email' },
+                    { text: 'Full name', value: 'fullName' },
                     { text: 'Age', value: 'age' },
+                    { text: 'Email', value: 'email' },
+                    { text: 'User name', value: 'userName' },
                 ],
-                desserts: [],
             }
+        },
+        computed: {
+            usersList(){
+                let list = Object.values(this.$store.getters.usersList || {});
+                list.forEach((item)=>{
+                    item.fullName = item.surname + ' ' + item.name + ' ' + item.patronymic;
+                });
+                return list;
+            },
+            usersLoading(){return this.$store.getters.usersLoading}
         },
         mounted() {
-            this.log();
+            this.$store.dispatch('usersList');
         },
-        methods: {
-            log(){
-                for (let i = 0; i < 50; i++) {
-                   this.desserts.push({
-                       name: 'User_'+i,
-                       email: 'User_'+i+'@it.io',
-                       age: this.randomInteger(18,60),
-                   })
-                }
-            },
-            randomInteger(min, max) {
-                let rand = min + Math.random() * (max + 1 - min);
-                return Math.floor(rand);
-            }
-        }
     }
 </script>
 
